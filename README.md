@@ -5,6 +5,8 @@
 ## BASE URL: /api/crimerates
 ### Command to install node-modules
 `npm install`
+### Command to run file
+`node index.js`
 ### Request Type
 GET
 ### Parameters
