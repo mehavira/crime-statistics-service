@@ -65,6 +65,19 @@ app.get('/api/crimerates/',(req, res, next) => {
     });
   });
 
+  //Handle errors 
+  app.use(function(req, res){
+    res.type('text/plain');
+    res.status(404);
+    res.send('404 - Not Found');
+  });
+
+  app.use(function(err, req, res, next){
+    res.type('plain/text');
+    res.status(500);
+    res.send('500 - Server Error');
+  });
+  
 //Server listening
 const PORT = process.env.PORT || 2000;
 app.listen(PORT,() =>{
