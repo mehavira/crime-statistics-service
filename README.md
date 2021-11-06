@@ -4,10 +4,10 @@
 
 ## BASE URL: /api/crimerates
 ### Description
-This service will provide a JSON object containing crime category names and their associated rates, given a pair of coordinates. 
+This service will provide a JSON object containing crime category names and their associated rates, given a pair of coordinates. It will only work for coordinates within Oregon counties.
 
 The crime rate for a category is calculated by totalling all individual sets of reported offenses for that category, dividing that sum 
-by the population of the county in which the coordinates reside in, and multiplying that quotient by 100,000. For example, if there have been 23 reported cases of identity theft in a county with a population of 6,325 people, then the identity theft crime rate would be (23/6325) * 100000 = ~363.64. 
+by the population of the county in which the coordinates reside in, and multiplying that quotient by 100,000. For example, if there have been 23 reported cases of identity theft in a county with a population of 6,325 people, then the identity theft crime rate would be (23/6325) * 100000 = ~363.64.  
 ### Command to install node-modules
 `npm install`
 ### Command to run file
