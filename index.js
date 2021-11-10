@@ -1,16 +1,22 @@
 const axios = require('axios');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
-const mysql = require('mysql');
- 
+// const mysql = require('mysql');
+const mysql = require('mysql2'); // MySQL client upgrade
+
+// CORS security accept all requests
+app.use(cors());
 // parse application/json
 app.use(bodyParser.json());
  
 //create database connection
 const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'new_user',
+//   host: 'localhost',
+  host: '127.0.0.1', // Explicit IPv4 not IPv6
+//   user: 'new_user',
+  user: 'root', // Switch user
   password: 'password',
   database: 'agency_locations_schema', 
   
@@ -64,6 +70,25 @@ app.get('/api/crimerates/',(req, res, next) => {
         next(error);
     });
   });
+
+app.get('/api/top5', (req, res, next) => {
+  /**
+   * Here Are The 10 Most Dangerous Towns In Oregon To Live In
+   * (Source: https://www.onlyinyourstate.com/oregon/dangerous-towns-or/)
+   * 1. Ontario, OR lat 44.0266 lon 116.9629
+   * 2. Portland, OR lat 45.5152 lon 122.6784
+   * 3. Warrenton, OR lat 46.1651 lon 123.9238
+   * 4. Coos Bay, OR lat 43.3665 lon 124.2179
+   * 5. Astoria, OR lat 46.1879 lon 123.8313
+   */
+  res.json([
+    {latitude: 44.0266, longitude: 116.9629},
+    {latitude: 45.5152, longitude: 122.6784},
+    {latitude: 46.1651, longitude: 123.9238},
+    {latitude: 43.3665, longitude: 124.2179},
+    {latitude: 46.1879, longitude: 123.8313}
+  ])
+});
 
   //Handle errors 
   app.use(function(req, res){
